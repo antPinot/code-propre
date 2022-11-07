@@ -3,18 +3,35 @@ package ex5;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Caisse {
+public abstract class Caisse {
 
-	private String nom;
-	private List<Item> items;
-
-	/** Constructeur
+	protected String nom;
+	protected List<Item> items;
+	
+	
+	/**Constructeur
 	 * @param nom
+	 * @param items
+	 * @param taille
 	 */
 	public Caisse(String nom) {
-		super();
 		this.nom = nom;
 		this.items = new ArrayList<>();
+	}
+
+	public abstract void filterAndAddItems(Item item);
+	
+	public int getSize(){
+		int sizeCaisse = 0;
+		for (Item item : items ) {
+			sizeCaisse += item.getPoids();
+		}
+		return sizeCaisse;
+	}
+
+	@Override
+	public String toString() {
+		return "Caisse [nom=" + nom + ", items=" + items + "]";
 	}
 
 	/** Getter pour l'attribut nom
